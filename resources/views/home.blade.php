@@ -4,11 +4,11 @@
 <div class="container">
     {{-- TODO: align to center profile picture and information. --}}
     <div class="row">
-        <div class="col-3 p-5">
+        <div class="col-3 p-5 ml-auto">
             {{-- 180 x 180 resolution --}}
             <img src="/img/profile-test.png" class="rounded-circle" alt=""> 
         </div>
-        <div class="col-9 pt-5">
+        <div class="col-8 pt-5">
             <div><h1>coolgram</h1></div>
             <div class="d-flex pt-1 ">
                 <div class="pr-5"><strong>110</strong> posts</div>
