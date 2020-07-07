@@ -15,9 +15,9 @@
                 <div class="pr-5"><strong>491k</strong> followers</div>
                 <div class="pr-5"><strong>42</strong> following</div>
             </div>
-            <div class="pt-4 font-weight-bold">coolgram.org</div>
-            <div>Like ig. But cooler.</div>
-            <div><a href="#">Visit our site</a></div>
+            <div class="pt-4 font-weight-bold">{{ $user->profile->title }}</div>
+            <div>{{ $user->profile->description }}</div>
+            <div><a href="#">{{ $user->profile->url }}</a></div>
         </div>
     </div>
     {{-- TODO: check if post image size can be smaller. --}}
