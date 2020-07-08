@@ -42,4 +42,9 @@ class User extends Authenticatable
         // Makes Laravel know that a user has one single profile
         return $this->hasOne(Profile::class);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
