@@ -9,7 +9,10 @@
             <img src="/img/profile-test.png" class="rounded-circle" alt=""> 
         </div>
         <div class="col-8 pt-5">
-            <div><h1>{{ $user->username }}</h1></div>
+            <div class="d-flex justify-content-between align-items-baseline">
+                <h1>{{ $user->username }}</h1>
+                <a class="btn btn-primary" href="#">New Post</a>
+            </div>
             <div class="d-flex pt-1 ">
                 <div class="pr-5"><strong>110</strong> posts</div>
                 <div class="pr-5"><strong>491k</strong> followers</div>
