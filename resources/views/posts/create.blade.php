@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <form action="/p" enctype="multipart/form-data" method="post">
+        @csrf
         <div class="row">
             <div class="col-8 offset-2">
 
@@ -11,7 +12,6 @@
                 </div>
 
                 <div class="form-group row">
-                    @csrf
                     <label for="caption" class="col-md-4 col-form-label">Post Caption</label>
 
                     <input id="caption" type="text" 
