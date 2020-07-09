@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
+    protected $guarded = [];
+
     public function user()
     {
         // Makes Laravel know that a profile belongs to one single user
