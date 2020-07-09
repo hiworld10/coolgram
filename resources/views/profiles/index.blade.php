@@ -13,7 +13,7 @@
                 <a class="btn btn-primary" href="/p/create">New Post</a>
             </div>
             <div class="d-flex pt-1 ">
-                <div class="pr-5"><strong>110</strong> posts</div>
+                <div class="pr-5"><strong>{{ $user->posts->count() }}</strong> posts</div>
                 <div class="pr-5"><strong>491k</strong> followers</div>
                 <div class="pr-5"><strong>42</strong> following</div>
             </div>
@@ -23,18 +23,21 @@
         </div>
     </div>
     {{-- TODO: check if post image size can be smaller. --}}
-    <div class="row pt-4">
-        <div class="col-4">
-            {{-- 640 x 640 resolution --}}
-            <img src="/img/img-1.jpg" class="w-100">
+    @if (count($user->posts) <= 0)
+        <div class="pt-4 text-center">
+            <h3>No posts yet.</h3>
+            <p class="pt-3">Add your first one <a href="/p/create">here.</a></p>    
         </div>
-        <div class="col-4">
-            <img src="/img/img-2.jpg" class="w-100">
+    @else
+        <div class="row pt-4">
+            @foreach ($user->posts as $post)
+                <div class="col-4 pb-4">
+                    <img src="/storage/{{ $post->image }}" class="w-100">
+                </div>
+            @endforeach
         </div>
-        <div class="col-4">
-            <img src="/img/img-3.jpg" class="w-100">
-        </div>
-    </div>
+    @endif
+    
 </div>
 @endsection
     
