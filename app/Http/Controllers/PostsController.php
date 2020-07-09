@@ -40,4 +40,17 @@ class PostsController extends Controller
 
         return redirect('/profile/' . auth()->user()->id);
     }
+
+    // The post ID is passed from the view. However, the function's argument is a Post object.
+    // When this happens and the web route variable coincides with its name, 
+    // Laravel searches for a post by that ID and passes it as the argument for the function. 
+    // If it is not found, it throws a 404.
+    public function show(Post $post) 
+    {   
+        // compact() automatically associates the string parameter with a variable with
+        // the same name inside the function. It is the same as:
+        // ['post' => $post]
+        // Multiple parameters can also be passed. e.g. compact('post', 'profile')
+        return view('posts/show', compact('post'));
+    }
 }
