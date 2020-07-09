@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-    {{-- TODO: align to center profile picture and information. --}}
     <div class="row">
         <div class="col-3 p-5 ml-auto">
             {{-- 180 x 180 resolution --}}
