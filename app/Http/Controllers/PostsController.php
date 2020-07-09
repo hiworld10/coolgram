@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        // Requires a logged in user before calling any class methods
+        $this->middleware('auth');
+    }
+
     public function create()
     {
         return view('posts/create');
