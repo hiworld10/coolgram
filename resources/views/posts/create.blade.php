@@ -29,12 +29,11 @@
                 <div class="row">
                     <label for="image" class="col-md-4 col-form-label">Post Image</label>
 
-                        @error('caption')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror                    
                     <input type="file" class="form-control-file" id="image" name="image">
+
+                        @error('image')
+                            <strong style="color: red; font-size: 12px;">{{ $message }}</strong>
+                        @enderror                    
                 </div>
 
                 <div class="row pt-5">
