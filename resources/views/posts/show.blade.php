@@ -8,9 +8,32 @@
         </div>
         <div class="col-4">
             <div>
-                <h3>{{ $post->user->username }}</h3>
+                <div class="d-flex align-items-center">
+                    <div class="pr-3">
+                        <img src="/storage/{{ $post->user->profile->image }}" class="w-100 rounded-circle" style="max-width: 40px;" alt="profile.jpeg">    
+                    </div>
 
-                <p>{{ $post->caption }}</p>
+                    <div>
+                        <div class="font-weight-bold">
+                            <a class="pr-1" href="/profile/{{$post->user->id}}">
+                                <span class="text-dark">{{ $post->user->username }}</span>
+                            </a>
+                            {{-- Black dot symbol --}}
+                            &#8226
+                            <a href="#" class="pl-1">Follow</a>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+                <p>
+                    <span class="font-weight-bold">
+                        <a href="/profile/{{$post->user->id}}">
+                            <span class="text-dark">{{ $post->user->username }}</span>
+                        </a>
+                    </span>
+                    {{ $post->caption }}
+                </p>
             </div>
         </div>
     </div>
