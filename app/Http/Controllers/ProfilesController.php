@@ -28,9 +28,18 @@ class ProfilesController extends Controller
         $data = request()->validate([
             'title' => 'required',
             'description' => 'required',
-            'url' => 'url',
+            'url' => '',
             'image' => ''
         ]);
+
+        // TODO: find out if there's a better alternative for handling an empty url field
+        if (request('url')) {
+            $url = request()->validate([
+                'url' => 'url'
+            ]);
+
+            $data = array_merge($data, ['url' => $url]);
+        }
 
         if (request('image')) {
             $img_path = request('image')->store('profile', 'public');
