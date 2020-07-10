@@ -37,6 +37,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($user) {
+            $user->profile()->create([
+                'title' => $user->name,
+            ]);
+        });
+    }
+
     public function profile()
     {
         // Makes Laravel know that a user has one single profile
