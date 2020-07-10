@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
 {
@@ -30,6 +31,15 @@ class ProfilesController extends Controller
             'url' => 'url',
             'image' => ''
         ]);
+
+        if (request('image')) {
+            $img_path = request('image')->store('profile', 'public');
+
+            $image = Image::make(public_path("storage/{$img_path}"))->fit(180, 180);
+            $image->save();
+
+            $data = array_merge($data, ['image' => $img_path]);
+        }
 
         auth()->user()->profile->update($data);
 

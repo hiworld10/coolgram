@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-3 p-5 ml-auto">
             {{-- 180 x 180 resolution --}}
-            <img src="/img/profile-test.png" class="rounded-circle" alt=""> 
+            <img src="{{ isset($user->profile->image) ? '/storage/' . $user->profile->image : '/img/nophoto.png' }}" class="rounded-circle" alt="profile.jpeg"> 
         </div>
         <div class="col-8 pt-5">
             <div class="d-flex justify-content-between align-items-baseline">
