@@ -12,7 +12,7 @@
                 <div class="d-flex align-items-center">
                     <div class="h4" style="font-size: 30px;">{{ $user->username }}</div>
                 
-                <follow-button user_id="{{ $user->id }}" ></follow-button>
+                <follow-button user_id="{{ $user->id }}" follows="{{ $follows }}" ></follow-button>
                 </div>
                 @can('update', $user->profile)
                     <a class="btn btn-primary" href="/p/create">New Post</a>
