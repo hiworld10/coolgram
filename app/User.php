@@ -48,6 +48,11 @@ class User extends Authenticatable
         });
     }
 
+    public function following()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
+
     public function profile()
     {
         // Makes Laravel know that a user has one single profile

@@ -13,6 +13,11 @@ class Profile extends Model
         return isset($this->image) ? '/storage/' . $this->image : '/img/nophoto.png';
     }
 
+    public function followers()
+    {
+        return $this->hasMany(User::class);
+    }
+
     public function user()
     {
         // Makes Laravel know that a profile belongs to one single user
