@@ -11,8 +11,9 @@
             <div class="d-flex justify-content-between align-items-baseline">
                 <div class="d-flex align-items-center">
                     <div class="h4" style="font-size: 30px;">{{ $user->username }}</div>
-                
-                <follow-button user_id="{{ $user->id }}" follows="{{ $follows }}" ></follow-button>
+                    @cannot('update', $user->profile)
+                        <follow-button user_id="{{ $user->id }}" follows="{{ $follows }}" ></follow-button>
+                    @endcannot
                 </div>
                 @can('update', $user->profile)
                     <a class="btn btn-primary" href="/p/create">New Post</a>
