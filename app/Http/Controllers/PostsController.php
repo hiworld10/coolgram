@@ -21,7 +21,8 @@ class PostsController extends Controller
 
         // Get the posts in descending order
         // latest() = orderBy('created_at', 'DESC')
-        $posts = Post::whereIn('user_id', $user_ids)->latest()->get();
+        // with('user') tells Laravel to also get the user with the post 
+        $posts = Post::whereIn('user_id', $user_ids)->with('user')->latest()->paginate(5);
 
         return view('posts/index', compact('posts'));
     }
