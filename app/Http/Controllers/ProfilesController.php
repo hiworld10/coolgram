@@ -56,24 +56,24 @@ class ProfilesController extends Controller
     {
         $this->authorize('update', $user->profile);
 
-        return view('profiles.edit', compact('user'));   
+        return view('profiles.edit', compact('user'));
     }
 
     public function update(User $user)
     {
         $this->authorize('update', $user->profile);
-        
+
         $data = request()->validate([
-            'title' => 'required',
+            'title'       => 'required',
             'description' => 'required',
-            'url' => '',
-            'image' => ''
+            'url'         => '',
+            'image'       => '',
         ]);
 
         // TODO: find out if there's a better alternative for handling an empty url field
         if (request('url')) {
             $url = request()->validate([
-                'url' => 'url'
+                'url' => 'url',
             ]);
 
             $data = array_merge($data, ['url' => $url]);
