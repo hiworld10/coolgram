@@ -31,3 +31,7 @@ Route::get('/p/create', 'PostsController@create');
 Route::get('/p/{post}', 'PostsController@show');
 
 Route::post('/p', 'PostsController@store');
+
+Route::get('/mail', function () {
+    return new App\Mail\NewUserWelcomeMail();
+});
