@@ -18,11 +18,11 @@ Auth::routes();
 
 Route::post('/follow/{user}', 'FollowsController@store');
 
-Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+Route::get('/{username}', 'ProfilesController@index')->name('profile.show');
 
-Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::get('/{username}/edit', 'ProfilesController@edit')->name('profile.edit');
 
-Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
+Route::patch('/{username}', 'ProfilesController@update')->name('profile.update');
 
 Route::get('/', 'PostsController@index');
 

@@ -17,7 +17,7 @@
 
                     <div>
                         <div class="font-weight-bold">
-                            <a class="pr-1" href="/profile/{{$post->user->id}}">
+                            <a class="pr-1" href="/{{$post->user->username}}">
                                 <span class="text-dark">{{ $post->user->username }}</span>
                             </a>
                         </div>
@@ -39,7 +39,7 @@
 
                         <p>
                             <span class="font-weight-bold">
-                                <a href="/profile/{{$post->user->id}}">
+                                <a href="/{{$post->user->username}}">
                                     <span class="text-dark">{{ $post->user->username }}</span>
                                 </a>
                             </span>

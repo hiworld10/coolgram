@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
@@ -10,8 +11,17 @@ use Intervention\Image\Facades\Image;
 class ProfilesController extends Controller
 {
     // See PostsController@show for refactoring details
-    public function index(User $user)
-    {
+    public function index($username)
+    {   
+        // TODO: look for a more effective way of getting the user by username
+        $user = User::firstWhere('username', '=', $username);
+
+        if (!$user) {
+            throw new ModelNotFoundException;
+        }
+
+        // dd($user);
+
         $follows = auth()->user() ? auth()->user()->following->contains($user->id) : false;
 
         // Use the cache facade to load the count data before making a new query
@@ -52,15 +62,27 @@ class ProfilesController extends Controller
         );
     }
 
-    public function edit(User $user)
+    public function edit($username)
     {
+        $user = User::firstWhere('username', '=', $username);
+
+        if (!$user) {
+            throw new ModelNotFoundException;
+        }
+
         $this->authorize('update', $user->profile);
 
         return view('profiles.edit', compact('user'));
     }
 
-    public function update(User $user)
+    public function update($username)
     {
+        $user = User::firstWhere('username', '=', $username);
+
+        if (!$user) {
+            throw new ModelNotFoundException;
+        }
+
         $this->authorize('update', $user->profile);
 
         $data = request()->validate([
@@ -90,6 +112,6 @@ class ProfilesController extends Controller
 
         auth()->user()->profile->update($data);
 
-        return redirect("/profile/{$user->id}");
+        return redirect("/{$user->username}");
     }
 }
