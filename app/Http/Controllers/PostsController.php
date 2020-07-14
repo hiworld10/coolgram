@@ -46,12 +46,12 @@ class PostsController extends Controller
         $image = Image::make(public_path("storage/{$img_path}"))->fit(1200, 1200);
         $image->save();
 
-        auth()->user()->posts()->create([
+        $created_post = auth()->user()->posts()->create([
             'caption' => $data['caption'],
             'image' => $img_path
         ]);
 
-        return redirect('/profile/' . auth()->user()->id);
+        return redirect('/p/' . $created_post->id);
     }
 
     // The post ID is passed from the view. However, the function's argument is a Post object.
