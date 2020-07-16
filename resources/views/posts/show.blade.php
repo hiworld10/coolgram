@@ -24,6 +24,29 @@
                         </div>
                     </div>
 
+                    {{-- Dropdown menu for editing or deleting the post --}}
+                    @can('update', $post->user->profile)
+                        <div class="nav navbar-nav ml-auto">
+                            <li class="dropdown nav-item">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <span class="text-dark caret">Options</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="#" class="dropdown-item">
+                                            <span class="text-dark">Edit Caption</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item">
+                                            <span class="text-dark">Delete Post</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </div>
+                    @endcan
+                
                 </div>
                 <hr>
                 <p>
