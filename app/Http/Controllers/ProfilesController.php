@@ -11,16 +11,9 @@ use Intervention\Image\Facades\Image;
 class ProfilesController extends Controller
 {
     // See PostsController@show for refactoring details
-    public function index($username)
+    public function index(User $user)
     {   
-        // TODO: look for a more effective way of getting the user by username
-        $user = User::firstWhere('username', '=', $username);
-
-        if (!$user) {
-            throw new ModelNotFoundException;
-        }
-
-        // dd($user);
+         // dd($user);
 
         $follows = auth()->user() ? auth()->user()->following->contains($user->id) : false;
 
@@ -62,27 +55,15 @@ class ProfilesController extends Controller
         );
     }
 
-    public function edit($username)
+    public function edit(User $user)
     {
-        $user = User::firstWhere('username', '=', $username);
-
-        if (!$user) {
-            throw new ModelNotFoundException;
-        }
-
         $this->authorize('update', $user->profile);
 
         return view('profiles.edit', compact('user'));
     }
 
-    public function update($username)
+    public function update(User $user)
     {
-        $user = User::firstWhere('username', '=', $username);
-
-        if (!$user) {
-            throw new ModelNotFoundException;
-        }
-
         $this->authorize('update', $user->profile);
 
         $data = request()->validate([
