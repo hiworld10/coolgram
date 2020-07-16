@@ -35,6 +35,12 @@ Route::get('/p/{post}', 'PostsController@show');
 
 Route::post('/p', 'PostsController@store');
 
+Route::get('/p/{post}/edit', 'PostsController@edit');
+
+Route::patch('/p/{post:id}', 'PostsController@update');
+
+Route::delete('/p/{post}', 'PostsController@delete');
+
 Route::get('/mail', function () {
     return new App\Mail\NewUserWelcomeMail();
 });

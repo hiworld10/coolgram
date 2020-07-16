@@ -19,11 +19,53 @@
                                 <span class="text-dark">{{ $post->user->username }}</span>
                             </a>
                             {{-- Black dot symbol --}}
-                            &#8226
-                            <a href="#" class="pl-1">Follow</a>
+                            @cannot('update', $post->user->profile)
+                                &#8226
+                                <a href="#" class="pl-1">Follow</a>
+                            @endcannot
                         </div>
                     </div>
 
+                    {{-- Dropdown menu for editing or deleting the post --}}
+                    @can('update', $post->user->profile)
+                        <div class="nav navbar-nav ml-auto">
+                            <li class="dropdown nav-item">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <span class="text-dark caret">Options</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="/p/{{ hashid_encode($post->id) }}/edit" class="dropdown-item">
+                                            <span class="text-dark">Edit Caption</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                      
+                                        <a href="/p/{{ hashid_encode($post->id) }}" class="dropdown-item" 
+                                             onclick="return confirmDelete();">
+                                            <span class="text-dark">Delete Post</span>
+                                        </a>
+                                        <form id="delete-form" action="/p/{{ hashid_encode($post->id) }}" method="post" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+
+                                        <script type="text/javascript">
+                                            function confirmDelete() {
+                                                var deleted = window.confirm("Delete this post?");
+                                                if (deleted) {
+                                                    event.preventDefault();
+                                                    document.getElementById('delete-form').submit();
+                                                }
+                                                return deleted;
+                                            }    
+                                        </script>          
+                                    </li>
+                                </ul>
+                            </li>
+                        </div>
+                    @endcan
+                
                 </div>
                 <hr>
                 <p>
