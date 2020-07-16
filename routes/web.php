@@ -30,6 +30,7 @@ Route::get('/', 'PostsController@index');
 
 Route::get('/p/create', 'PostsController@create');
 
+// See RouteServiceProvider@boot for details about this model binding.
 Route::get('/p/{post}', 'PostsController@show');
 
 Route::post('/p', 'PostsController@store');

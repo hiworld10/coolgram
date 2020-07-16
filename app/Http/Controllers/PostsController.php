@@ -51,7 +51,7 @@ class PostsController extends Controller
             'image' => $img_path
         ]);
 
-        return redirect('/p/' . $created_post->id);
+        return redirect('/p/' . hashid_encode($created_post->id));
     }
 
     // The post ID is passed from the view. However, the function's argument is a Post object.

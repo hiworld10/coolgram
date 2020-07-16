@@ -27,7 +27,7 @@
 
             <div class="row">
                 <div class="col-6 offset-3">
-                    <a href="/p/{{ $post->id }}">
+                    <a href="/p/{{ hashid_encode($post->id) }}">
                         <img src="/storage/{{ $post->image }}" class="w-100" alt="image.jpeg">
                     </a>
                 </div>

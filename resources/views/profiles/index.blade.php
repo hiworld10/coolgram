@@ -44,7 +44,7 @@
         <div class="row pt-4">
             @foreach ($user->posts as $post)
                 <div class="col-4 pb-4">
-                    <a href="/p/{{ $post->id }}">
+                    <a href="/p/{{ hashid_encode($post->id) }}">
                         <img src="/storage/{{ $post->image }}" class="w-100">
                     </a>
                 </div>

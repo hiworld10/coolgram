@@ -30,7 +30,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Decode the id from the url and find a model by its primary key. 
+        // Else, throw a 404.
+        Route::bind('post', function($encoded_id) {
+            // Since the hashid_decode function returns an array, 
+            // look for the first pos only.
+            return \App\Post::findOrFail(hashid_decode($encoded_id)[0]);
+        });
 
         parent::boot();
     }
