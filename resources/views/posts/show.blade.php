@@ -19,8 +19,10 @@
                                 <span class="text-dark">{{ $post->user->username }}</span>
                             </a>
                             {{-- Black dot symbol --}}
-                            &#8226
-                            <a href="#" class="pl-1">Follow</a>
+                            @cannot('update', $post->user->profile)
+                                &#8226
+                                <a href="#" class="pl-1">Follow</a>
+                            @endcannot
                         </div>
                     </div>
 
