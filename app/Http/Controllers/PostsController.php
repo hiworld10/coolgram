@@ -66,4 +66,24 @@ class PostsController extends Controller
         // Multiple parameters can also be passed. e.g. compact('post', 'profile')
         return view('posts/show', compact('post'));
     }
+
+    public function edit(Post $post)
+    {
+        $this->authorize('update', $post);
+
+        return view('posts/edit', compact('post'));
+    }
+
+    public function update(Post $post)
+    {
+        $this->authorize('update', $post);
+
+        $data = request()->validate([
+            'caption' => 'required'
+        ]);
+
+        $post->update($data);
+
+        return redirect('/p/' . hashid_encode($post->id));
+    }
 }

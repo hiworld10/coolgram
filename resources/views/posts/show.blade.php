@@ -33,7 +33,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li>
-                                        <a href="#" class="dropdown-item">
+                                        <a href="/p/{{ hashid_encode($post->id) }}/edit" class="dropdown-item">
                                             <span class="text-dark">Edit Caption</span>
                                         </a>
                                     </li>
