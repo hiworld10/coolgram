@@ -86,4 +86,13 @@ class PostsController extends Controller
 
         return redirect('/p/' . hashid_encode($post->id));
     }
+
+    public function delete(Post $post)
+    {
+        $this->authorize('update', $post);
+
+        $post->delete();
+
+        return redirect('/' . auth()->user()->username);
+    }
 }

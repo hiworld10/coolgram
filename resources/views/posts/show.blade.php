@@ -40,9 +40,26 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="dropdown-item">
+                                      
+                                        <a href="/p/{{ hashid_encode($post->id) }}" class="dropdown-item" 
+                                             onclick="return confirmDelete();">
                                             <span class="text-dark">Delete Post</span>
                                         </a>
+                                        <form id="delete-form" action="/p/{{ hashid_encode($post->id) }}" method="post" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+
+                                        <script type="text/javascript">
+                                            function confirmDelete() {
+                                                var deleted = window.confirm("Delete this post?");
+                                                if (deleted) {
+                                                    event.preventDefault();
+                                                    document.getElementById('delete-form').submit();
+                                                }
+                                                return deleted;
+                                            }    
+                                        </script>          
                                     </li>
                                 </ul>
                             </li>
