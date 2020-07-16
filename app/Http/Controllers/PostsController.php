@@ -22,7 +22,7 @@ class PostsController extends Controller
         // Get the posts in descending order
         // latest() = orderBy('created_at', 'DESC')
         // with('user') tells Laravel to also get the user with the post 
-        $posts = Post::whereIn('user_id', $user_ids)->with('user')->latest()->paginate(5);
+        $posts = Post::whereIn('user_id', $user_ids)->with('user')->latest()->simplePaginate(5);
 
         return view('posts/index', compact('posts'));
     }
@@ -46,12 +46,12 @@ class PostsController extends Controller
         $image = Image::make(public_path("storage/{$img_path}"))->fit(1200, 1200);
         $image->save();
 
-        auth()->user()->posts()->create([
+        $created_post = auth()->user()->posts()->create([
             'caption' => $data['caption'],
             'image' => $img_path
         ]);
 
-        return redirect('/profile/' . auth()->user()->id);
+        return redirect('/p/' . hashid_encode($created_post->id));
     }
 
     // The post ID is passed from the view. However, the function's argument is a Post object.

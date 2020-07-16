@@ -11,15 +11,16 @@
             <div class="d-flex justify-content-between align-items-baseline">
                 <div class="d-flex align-items-center">
                     <div class="h4" style="font-size: 30px;">{{ $user->username }}</div>
-                
-                <follow-button user_id="{{ $user->id }}" follows="{{ $follows }}" ></follow-button>
+                    @cannot('update', $user->profile)
+                        <follow-button user_id="{{ $user->id }}" follows="{{ $follows }}" ></follow-button>
+                    @endcannot
                 </div>
                 @can('update', $user->profile)
                     <a class="btn btn-primary" href="/p/create">New Post</a>
                 @endcan
             </div>
                 @can('update', $user->profile)
-                    <a href="/profile/{{$user->id}}/edit">Edit Profile</a>
+                    <a href="/{{$user->username}}/edit">Edit Profile</a>
                 @endcan
             <div class="d-flex pt-1 ">
                 <div class="pr-5"><strong>{{ $posts_count }}</strong> posts</div>
@@ -43,7 +44,7 @@
         <div class="row pt-4">
             @foreach ($user->posts as $post)
                 <div class="col-4 pb-4">
-                    <a href="/p/{{ $post->id }}">
+                    <a href="/p/{{ hashid_encode($post->id) }}">
                         <img src="/storage/{{ $post->image }}" class="w-100">
                     </a>
                 </div>

@@ -18,7 +18,7 @@ class NewUserWelcomeMail extends Mailable
      */
     public function __construct()
     {
-        //
+        $this->subject = 'Welcome to CoolGram';
     }
 
     /**

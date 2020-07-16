@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
@@ -11,7 +12,9 @@ class ProfilesController extends Controller
 {
     // See PostsController@show for refactoring details
     public function index(User $user)
-    {
+    {   
+         // dd($user);
+
         $follows = auth()->user() ? auth()->user()->following->contains($user->id) : false;
 
         // Use the cache facade to load the count data before making a new query
@@ -90,6 +93,6 @@ class ProfilesController extends Controller
 
         auth()->user()->profile->update($data);
 
-        return redirect("/profile/{$user->id}");
+        return redirect("/{$user->username}");
     }
 }

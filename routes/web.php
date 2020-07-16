@@ -18,16 +18,19 @@ Auth::routes();
 
 Route::post('/follow/{user}', 'FollowsController@store');
 
-Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+// Instead of by primary key, laravel 7 can find a model by
+// a different attribute and return it or fail.
+Route::get('/{user:username}', 'ProfilesController@index')->name('profile.show');
 
-Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::get('/{user:username}/edit', 'ProfilesController@edit')->name('profile.edit');
 
-Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
+Route::patch('/{user:username}', 'ProfilesController@update')->name('profile.update');
 
 Route::get('/', 'PostsController@index');
 
 Route::get('/p/create', 'PostsController@create');
 
+// See RouteServiceProvider@boot for details about this model binding.
 Route::get('/p/{post}', 'PostsController@show');
 
 Route::post('/p', 'PostsController@store');
