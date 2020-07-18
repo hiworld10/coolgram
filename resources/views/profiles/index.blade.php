@@ -12,7 +12,7 @@
                 <div class="d-flex align-items-center">
                     <div class="h4" style="font-size: 30px;">{{ $user->username }}</div>
                     @cannot('update', $user->profile)
-                        <follow-button user_id="{{ $user->id }}" follows="{{ $follows }}" ></follow-button>
+                        <follow-button username="{{ $user->username }}" follows="{{ $follows }}" ></follow-button>
                     @endcannot
                 </div>
                 @can('update', $user->profile)

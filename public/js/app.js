@@ -1955,7 +1955,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log('FollowButton Component mounted.');
   },
-  props: ['user_id', 'follows'],
+  props: ['username', 'follows'],
   data: function data() {
     return {
       status: this.follows
@@ -1965,12 +1965,13 @@ __webpack_require__.r(__webpack_exports__);
     followUser: function followUser() {
       var _this = this;
 
-      axios.post('/follow/' + this.user_id).then(function (response) {
+      axios.post('/follow/' + this.username).then(function (response) {
         _this.status = !_this.status;
         console.log(response.data);
       })["catch"](function (errors) {
         if (errors.response.status == 401) {
           window.location = '/login';
+          console.log(_this.username);
         }
       });
     }
