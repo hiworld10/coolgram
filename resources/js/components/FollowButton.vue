@@ -14,7 +14,7 @@
             console.log('FollowButton Component mounted.')
         },
 
-        props: ['user_id', 'follows'],
+        props: ['username', 'follows'],
 
         data: function() {
             return {
@@ -24,7 +24,7 @@
 
         methods: {
             followUser() {
-                axios.post('/follow/' + this.user_id)
+                axios.post('/follow/' + this.username)
                     .then(response => {
                         this.status = !this.status
                         console.log(response.data);
@@ -32,6 +32,7 @@
                     .catch(errors => {
                         if (errors.response.status == 401) {
                             window.location = '/login';
+                            console.log(this.username);
                         }
                     });
             }

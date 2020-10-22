@@ -43,7 +43,7 @@
                                     <span class="text-dark">{{ $post->user->username }}</span>
                                 </a>
                             </span>
-                            {{ $post->caption }}
+                            {!! nl2br(e($post->caption)) !!}
                         </p>
                         <hr>
                     </div>

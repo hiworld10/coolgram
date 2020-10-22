@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
-Route::post('/follow/{user}', 'FollowsController@store');
+Route::post('/follow/{user:username}', 'FollowsController@store');
 
 // Instead of by primary key, laravel 7 can find a model by
 // a different attribute and return it or fail.
